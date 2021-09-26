@@ -12,3 +12,20 @@ GROUP BY column_name(s)
 HAVING condition
 ORDER BY column_name(s);
 
+4. to select the top row in oracle use rownum=1
+
+5. sorting multiple coulumns in opposite way
+Example: select city, length(city) 
+        from (select city from station order by length(city) desc, city asc) 
+        where rownum=1;
+
+6. string operation: upper(), substr()
+select distinct(city) from station where upper(substr(city,1,1)) in ('A','E','I','O','U'); staring with vowel
+select distinct(city) from station where upper(substr(city,-1,1)) in ('A','E','I','O','U'); ending with vowel
+https://www.oracletutorial.com/oracle-string-functions/oracle-substr/
+
+7. 
+---------------------------------------------------------------------------------------------------------
+oracle 19c installation : https://www.youtube.com/watch?v=KDu_VF9xaGk
+> '/' as sysdba to login as admin
+> create users
