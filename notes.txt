@@ -20,7 +20,7 @@ Example: select city, length(city)
         from (select city from station order by length(city) desc, city asc) 
         where rownum=1;
 
-6. string operation: upper(), substr(), substr() from backwards
+6. string operation: upper(), lower(), substr(), substr() from backwards
 select distinct(city) from station where upper(substr(city,1,1)) in ('A','E','I','O','U'); staring with vowel
 select distinct(city) from station where upper(substr(city,-1,1)) in ('A','E','I','O','U'); ending with vowel
 https://www.oracletutorial.com/oracle-string-functions/oracle-substr/
@@ -35,6 +35,17 @@ else 'Scalene'
 end
 from triangles;
 
+8. || String Concatenation Operator - Oracle 
+select name || '(' || substr(occupation, 1, 1) || ')' 
+from occupations
+order by name;
+
+select 'There are a total of ' || count(occupation) || ' ' || lower(occupation) || 's.'
+from occupations
+group by occupation
+order by count(occupation), occupation;
+
+9. 
 ---------------------------------------------------------------------------------------------------------
 oracle 19c installation : https://www.youtube.com/watch?v=KDu_VF9xaGk
 > '/' as sysdba to login as admin
