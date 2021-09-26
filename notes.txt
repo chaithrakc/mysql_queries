@@ -45,7 +45,11 @@ from occupations
 group by occupation
 order by count(occupation), occupation;
 
-9. 
+9. self joins https://www.w3resource.com/sql/joins/perform-a-self-join.php
+SELECT a.column_name, b.column_name... 
+FROM table1 a, table1 b 
+WHERE a.common_filed = b.common_field;
+
 ---------------------------------------------------------------------------------------------------------
 oracle 19c installation : https://www.youtube.com/watch?v=KDu_VF9xaGk
 > '/' as sysdba to login as admin
