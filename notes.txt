@@ -1,0 +1,14 @@
+1. we cannot have any other columns selected along with aggregate functions
+for example: select city, max(length(city)) from station;
+
+2. modulus operator in sql
+mod(id,2)
+
+3. The HAVING clause was added to SQL because the WHERE keyword cannot be used with aggregate functions.
+SELECT column_name(s)
+FROM table_name
+WHERE condition
+GROUP BY column_name(s)
+HAVING condition
+ORDER BY column_name(s);
+
