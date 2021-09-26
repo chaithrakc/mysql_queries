@@ -1,1 +1,1 @@
-# HackerRank SQL Problems
+# Oracle SQL Queries
