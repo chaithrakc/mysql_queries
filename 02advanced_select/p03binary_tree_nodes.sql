@@ -46,6 +46,7 @@ The Binary Tree below illustrates the sample:
 
 */
 
+-- using concat function, switch case and sub-query concept
 select 
 case
 when p is null then concat(n,' Root')
