@@ -62,6 +62,14 @@ order by n;
 
 11. while using group by, same column should be projected
 
+12. ceil function to round off to nearest whole number
+select ceil(avg(salary) - avg(replace(salary, '0', ''))) from employees;
+
+13. replace can be used with integer also in sql
+select ceil(avg(salary) - avg(replace(salary, '0', ''))) from employees;
+SELECT REPLACE(123, '1', '9');  - 923
+
+
 ---------------------------------------------------------------------------------------------------------
 oracle 19c installation : https://www.youtube.com/watch?v=KDu_VF9xaGk
 > '/' as sysdba to login as admin
