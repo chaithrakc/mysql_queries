@@ -6,6 +6,5 @@ https://www.hackerrank.com/challenges/weather-observation-station-6/problem
 https://www.hackerrank.com/challenges/weather-observation-station-7/problem 
 https://www.hackerrank.com/challenges/more-than-75-marks/problem
 
-
-when should we use subqueries in the from/where clauses?
+Advanced Select:
 
