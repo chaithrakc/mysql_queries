@@ -1,6 +1,8 @@
 /*
 Difficulty: Medium
 
+https://www.hackerrank.com/challenges/weather-observation-station-5/problem
+
 Query the two cities in STATION with the shortest and longest CITY names, as well as their respective lengths (i.e.: number of characters in the name). If there is more than one smallest or largest city, choose the one that comes first when ordered alphabetically.
 
 The STATION table is described as follows:
@@ -30,6 +32,8 @@ You can write two separate queries to get the desired output. It need not be a s
 
 */
 
+--oracle queries
+-- from can be a table/query also
 select city, length(city) 
 from (select city from station order by length(city) asc, city asc) 
 where rownum = 1;
@@ -37,3 +41,39 @@ where rownum = 1;
 select city, length(city) 
 from (select city from station order by length(city) desc, city asc) 
 where rownum=1;
+
+--mysql queries
+/*SELECT ...  
+FROM mytable  
+ORDER BY ... 
+LIMIT 1 */
+
+select city, length(city) 
+from station
+order by length(city), city
+limit 1;
+
+select city, length(city) 
+from station
+order by length(city) desc, city asc
+limit 1;
+
+-- MySQL subquery in the FROM clause
+/* When you use a subquery in the FROM clause, the result set returned from a subquery is 
+used as a temporary table. This table is referred to as a derived table or materialized subquery.
+*/
+-- we need to alias the temporary table in mysql
+select shortest_city.city, length(shortest_city.city) 
+from (select city from station order by length(city), city) as shortest_city
+limit 1;
+
+select longest_city.city, length(longest_city.city) 
+from (select city from station order by length(city) desc, city asc) as longest_city
+limit 1;
+
+/*
+output
+Amo 3
+Marine On Saint Croix 21
+*/
+

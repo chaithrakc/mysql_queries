@@ -1,5 +1,7 @@
 /*
-Difficulty: easy
+Difficulty: Medium
+
+https://www.hackerrank.com/challenges/weather-observation-station-7/problem 
 
 Query the list of CITY names ending with vowels (a, e, i, o, u) from STATION. Your result cannot contain duplicates.
 
@@ -17,4 +19,6 @@ The STATION table is described as follows:
 where LAT_N is the northern latitude and LONG_W is the western longitude.
 */
 
-select distinct(city) from station where upper(substr(city,-1,1)) in ('A','E','I','O','U');
+select distinct(city) 
+from station 
+where upper(substr(city,-1,1)) in ('A','E','I','O','U');

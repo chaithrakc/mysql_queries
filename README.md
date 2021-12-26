@@ -1,12 +1,42 @@
 # SQL QUERIES
 
+https://ozh.github.io/ascii-tables/ for generating tables
+
 1. we cannot have any other columns selected along with aggregate functions
 for example: select city, max(length(city)) from station;
+select city, count(city) from station;
 
 2. modulus operator in sql
 mod(id,2) - select even number of ids
+Example Problem: https://www.hackerrank.com/challenges/weather-observation-station-3/problem
 
-3. The HAVING clause was added to SQL because the WHERE keyword cannot be used with aggregate functions
+3. Finding the duplicate records in the table
+select count(city) - count(distinct(city)) 
+from station; 
+https://www.hackerrank.com/challenges/weather-observation-station-4/problem 
+
+4. to select the top row in sql oracle use rownum=1
+in MySQL use limit 1
+https://www.hackerrank.com/challenges/weather-observation-station-5/problem 
+
+5. sorting multiple coulumns in opposite way
+Example: select city, length(city) 
+        from (select city from station order by length(city) desc, city asc) 
+        where rownum=1;
+
+6. string operation: upper(), lower(), substr(), substr() from backwards
+SUBSTR(string, start, length) (or) SUBSTR(string FROM start FOR length)
+
+select substr(Name from -3 for 3)  -- extracting last 3 chars
+from students;
+https://www.hackerrank.com/challenges/more-than-75-marks/problem
+
+select distinct(city) from station where upper(substr(city,1,1)) in ('A','E','I','O','U'); staring with vowel
+select distinct(city) from station where upper(substr(city,-1,1)) in ('A','E','I','O','U'); ending with vowel
+https://www.oracletutorial.com/oracle-string-functions/oracle-substr/
+
+
+4. The HAVING clause was added to SQL because the WHERE keyword cannot be used with aggregate functions
 syntax:
 SELECT column_name(s)
 FROM table_name
@@ -15,18 +45,6 @@ GROUP BY column_name(s)
 HAVING condition
 ORDER BY column_name(s);
 
-4. to select the top row in sql oracle use rownum=1
-
-5. sorting multiple coulumns in opposite way
-Example: select city, length(city) 
-        from (select city from station order by length(city) desc, city asc) 
-        where rownum=1;
-
-6. string operation: upper(), lower(), substr(), substr() from backwards
-
-select distinct(city) from station where upper(substr(city,1,1)) in ('A','E','I','O','U'); staring with vowel
-select distinct(city) from station where upper(substr(city,-1,1)) in ('A','E','I','O','U'); ending with vowel
-https://www.oracletutorial.com/oracle-string-functions/oracle-substr/
 
 7. switch case in sql
 select
