@@ -215,6 +215,30 @@ whenever problem statement has "each" keyword then group by can be used
 https://www.w3schools.com/sql/func_mysql_power.asp 
 
 
+BASIC JOIN
+1. CROSS JOIN or INNER JOIN without common field
+
+select * from Students inner join Grades;
+
+https://www.hackerrank.com/challenges/the-report/problem
+
+2. if condition within the select clause
+select if(grade<8, NULL, name), grade, marks
+from students join grades
+where marks between min_mark and max_mark
+order by grade desc, name asc;
+https://www.hackerrank.com/challenges/the-report/problem
+
+3. correlated sub query
+extra reading https://learnsql.com/blog/correlated-sql-subquery-5-minutes/ 
+Example: https://www.hackerrank.com/challenges/harry-potter-and-wands/problem
+
+select w.id, p.age, w.coins_needed, w.power 
+from Wands as w join Wands_Property as p on w.code = p.code
+where p.is_evil = 0 
+and w.coins_needed = (select min(coins_needed) from Wands as w1 join Wands_Property as p1 on (w1.code = p1.code) where w1.power = w.power and p1.age = p.age) 
+order by w.power desc, p.age desc;
+
 10. self joins https://www.w3resource.com/sql/joins/perform-a-self-join.php
 SELECT a.column_name, b.column_name... 
 FROM table1 a, table1 b 

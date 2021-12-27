@@ -23,6 +23,17 @@ Group By and count() https://www.hackerrank.com/challenges/earnings-of-employees
 max in subquery https://www.hackerrank.com/challenges/weather-observation-station-15/problem
 over() to generate row numbers, switch case, and sub query https://www.hackerrank.com/challenges/weather-observation-station-20/problem
 
+BASIC JOIN:
+if cond in the select clause and join tables without common field (cross join)
+https://www.hackerrank.com/challenges/the-report/problem
+
+group by with multiple joins
+https://www.hackerrank.com/challenges/full-score/problem
+
+
+
+
+
 
 
 
