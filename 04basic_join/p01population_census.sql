@@ -1,5 +1,11 @@
 /*
-Given the CITY and COUNTRY tables, query the sum of the populations of all cities where the CONTINENT is 'Asia'.
+
+Difficulty: Easy
+
+https://www.hackerrank.com/challenges/asian-population/problem
+
+Given the CITY and COUNTRY tables, query the sum of the populations of all cities 
+where the CONTINENT is 'Asia'.
 Note: CITY.CountryCode and COUNTRY.Code are matching key columns.
 
 The CITY table is described as follows:
@@ -34,6 +40,11 @@ COUNTRY tables are described as follows:
 | CODE2           | VARCHAR2(2)  |
 +-----------------+--------------+
 */
+
+select sum(city.population)
+from city inner join country on countrycode=code
+where continent = 'Asia';
+
 
 select sum(city.population)
 from city, country
