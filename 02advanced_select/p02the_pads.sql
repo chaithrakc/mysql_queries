@@ -1,5 +1,7 @@
 /*
-Difficulty: Medium
+Difficulty: Easy
+
+https://www.hackerrank.com/challenges/the-pads/problem 
 
 Generate the following two result sets:
 
@@ -55,6 +57,20 @@ There are a total of 3 professors.
 
 */
 
+
+--mysql syntax
+select concat(name,  '(' , substr(occupation, 1, 1) , ')' )
+from occupations
+order by name;
+
+select concat('There are a total of ' , count(occupation) , ' ' , lower(occupation) , 's.')
+from occupations
+group by occupation
+order by count(occupation), occupation;
+
+
+
+--oracle syntax
 -- sort the names in ascending order, immediately followed by the first letter of each profession enclosed in parentheses. For example: AnActorName(A), ADoctorName(D), AProfessorName(P), and ASingerName(S).
 select name || '(' || substr(occupation, 1, 1) || ')' 
 from occupations

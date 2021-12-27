@@ -1,6 +1,8 @@
 /*
 Difficulty: Medium
 
+https://www.hackerrank.com/challenges/binary-search-tree-1/problem 
+
 You are given a table, BST, containing two columns: N and P, where N represents the value of a node in Binary Tree, and P is the parent of N.
 +--------+---------+
 | Column |  Type   |
@@ -45,6 +47,16 @@ The Binary Tree below illustrates the sample:
          1   3  6  9 
 
 */
+
+select N,
+case
+when P is null then 'Root'
+when N in (select P from BST) then 'Inner'
+else 'Leaf'
+end
+from BST
+order by N
+
 
 -- using concat function, switch case and sub-query concept
 select 

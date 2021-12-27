@@ -74,17 +74,7 @@ https://www.hackerrank.com/challenges/weather-observation-station-5/problem
 
 ADVANCED SELECT
 
-8. The HAVING clause was added to SQL because the WHERE keyword cannot be used with aggregate functions
-syntax:
-SELECT column_name(s)
-FROM table_name
-WHERE condition
-GROUP BY column_name(s)
-HAVING condition
-ORDER BY column_name(s);
-
-
-8. switch case in sql
+1. switch case in sql
 select
 case
 when (A+B)<= C then 'Not A Triangle'
@@ -94,7 +84,11 @@ else 'Scalene'
 end
 from triangles;
 
-9. || String Concatenation Operator - Oracle 
+https://www.hackerrank.com/challenges/what-type-of-triangle/problem
+
+
+
+9. || String Concatenation Operator - only for Oracle 
 select name || '(' || substr(occupation, 1, 1) || ')' 
 from occupations
 order by name;
@@ -103,6 +97,35 @@ select 'There are a total of ' || count(occupation) || ' ' || lower(occupation) 
 from occupations
 group by occupation
 order by count(occupation), occupation;
+
+https://www.hackerrank.com/challenges/the-pads/problem
+
+8. The HAVING clause was added to SQL because the WHERE keyword cannot be used with aggregate functions
+syntax:
+SELECT column_name(s)
+FROM table_name
+WHERE condition
+GROUP BY column_name(s)
+HAVING condition
+ORDER BY column_name(s);
+
+9. we cannot have anyother columns in select clause other than the coulmns used in group by
+but, you can have other aggregate functions like count, max 
+
+select comp.company_code, founder,
+count(distinct lm.lead_manager_code),
+count(distinct sm.senior_manager_code),
+count(distinct mn.manager_code),
+count(distinct employee_code)
+from company as comp
+inner join lead_manager as lm on lm.company_code=comp.company_code
+inner join senior_manager as sm on sm.lead_manager_code = lm.lead_manager_code
+inner join manager as mn on mn.senior_manager_code = sm.senior_manager_code
+inner join employee as emp on emp.manager_code = mn.manager_code
+group by comp.company_code, founder
+order by comp.company_code;
+
+https://www.hackerrank.com/challenges/the-company/problem
 
 10. self joins https://www.w3resource.com/sql/joins/perform-a-self-join.php
 SELECT a.column_name, b.column_name... 
@@ -127,3 +150,15 @@ select ceil(avg(salary) - avg(replace(salary, '0', ''))) from employees;
 14. replace can be used with integer also in sql
 select ceil(avg(salary) - avg(replace(salary, '0', ''))) from employees;
 SELECT REPLACE(123, '1', '9');  - 923
+
+Between operator
+https://www.techonthenet.com/mysql/between.php 
+
+Joins using ascii standard
+https://www.techonthenet.com/mysql/joins.php
+
+Multiple Inner Joins 
+https://www.sqlshack.com/sql-multiple-joins-for-beginners-with-examples/ 
+
+Partition By
+https://www.sqlshack.com/sql-partition-by-clause-overview/

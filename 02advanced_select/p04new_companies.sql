@@ -1,5 +1,11 @@
 /*
-Amber's conglomerate corporation just acquired some new companies. Each of the companies follows this hierarchy:
+
+Difficulty: Medium
+
+https://www.hackerrank.com/challenges/the-company/problem 
+
+Amber's conglomerate corporation just acquired some new companies. Each of the companies follows 
+this hierarchy:
 Founder
 |
 Lead Manager
@@ -10,19 +16,37 @@ Manager
 |
 Employee
 
-Given the table schemas below, write a query to print the company_code, founder name, total number of lead managers, total number of senior managers, total number of managers, and total number of employees. Order your output by ascending company_code.
+Given the table schemas below, write a query to print the company_code, founder name, 
+total number of lead managers, total number of senior managers, total number of managers, 
+and total number of employees. Order your output by ascending company_code.
 
 Note:
 The tables may contain duplicate records.
-The company_code is string, so the sorting should not be numeric. For example, if the company_codes are C_1, C_2, and C_10, then the ascending company_codes will be C_1, C_10, and C_2.
+The company_code is string, so the sorting should not be numeric. For example, if the 
+company_codes are C_1, C_2, and C_10, then the ascending company_codes will be C_1, C_10, 
+and C_2.
 
 */
+
+--using ascii standard
+select comp.company_code, founder,
+count(distinct lm.lead_manager_code),
+count(distinct sm.senior_manager_code),
+count(distinct mn.manager_code),
+count(distinct employee_code)
+from company as comp
+inner join lead_manager as lm on lm.company_code=comp.company_code
+inner join senior_manager as sm on sm.lead_manager_code = lm.lead_manager_code
+inner join manager as mn on mn.senior_manager_code = sm.senior_manager_code
+inner join employee as emp on emp.manager_code = mn.manager_code
+group by comp.company_code, founder  -- even though we do not require founder in grouping by, we shud add it. otherwise,we wont be able to project founder in output
+order by comp.company_code;
 
 select Company.company_code, founder, 
  count(distinct Lead_Manager.lead_manager_code) as leads, 
  count(distinct Senior_Manager.senior_manager_code) as sr_manager, 
  count(distinct Manager.manager_code) as manager,
- count(*) as employee
+ count(distinct employee_code) as employee
 from Company, Lead_Manager, Senior_Manager, Manager, Employee
 where Company.company_code = Lead_Manager.company_code
 and Lead_Manager.lead_manager_code = Senior_Manager.lead_manager_code
