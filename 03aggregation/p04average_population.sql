@@ -1,4 +1,10 @@
 /*
+
+Difficutly: Easy
+
+https://www.hackerrank.com/challenges/average-population/problem
+
+
 Query the average population for all cities in CITY, rounded down to the nearest integer.
 
 The CITY table is described as follows:
@@ -14,5 +20,4 @@ The CITY table is described as follows:
 
 */
 
-select round(avg(population),0) from city;
-select round(avg(population),1) from city;
+select floor(avg(population)) from city;

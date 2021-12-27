@@ -55,21 +55,7 @@ The empty cell data for columns with less than the maximum number of names per o
 
 */
 
-
-
-
 -- row_number will assign ids within the partitioned subset of rows
-
---(Oracle Specific Query)
-select doc.Name, prof.Name, sing.Name, act.Name
-from (select Name, row_number() over (partition by occupation order by Name) id from occupations where occupation='Doctor') doc
-full outer join (select Name, row_number() over (partition by occupation order by Name) id 
-from occupations where occupation='Professor') prof on prof.id=doc.id
-full outer join (select Name, row_number() over (partition by occupation order by Name) id 
-from occupations where occupation='Singer') sing on sing.id=prof.id
-full outer join (select Name, row_number() over (partition by occupation order by Name) id 
-from occupations where occupation='Actor') act on act.id=sing.id;
-
 
 --mysql query
 select 
@@ -107,4 +93,27 @@ Professor Priyanka 7
 Singer Christeen 1
 Singer Jane 2
 Singer Jenny 3
-Singer Kristeen 4 */
+Singer Kristeen 4 
+
+Final Output:
+--------------
+Aamina Ashley Christeen Eve
+Julia Belvet Jane Jennifer
+Priya Britney Jenny Ketty
+NULL Maria Kristeen Samantha
+NULL Meera NULL NULL
+NULL Naomi NULL NULL
+NULL Priyanka NULL NULL
+
+*/
+
+
+--(Oracle Specific Query)
+select doc.Name, prof.Name, sing.Name, act.Name
+from (select Name, row_number() over (partition by occupation order by Name) id from occupations where occupation='Doctor') doc
+full outer join (select Name, row_number() over (partition by occupation order by Name) id 
+from occupations where occupation='Professor') prof on prof.id=doc.id
+full outer join (select Name, row_number() over (partition by occupation order by Name) id 
+from occupations where occupation='Singer') sing on sing.id=prof.id
+full outer join (select Name, row_number() over (partition by occupation order by Name) id 
+from occupations where occupation='Actor') act on act.id=sing.id;

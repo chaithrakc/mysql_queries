@@ -2,7 +2,7 @@
 
 https://ozh.github.io/ascii-tables/ for generating tables
 
-BASIC SELECT TAKE AWAYS:
+BASIC SELECT:
 
 1. we cannot have any other columns selected along with aggregate functions
 for example: select city, max(length(city)) from station;
@@ -74,7 +74,16 @@ https://www.hackerrank.com/challenges/weather-observation-station-5/problem
 
 ADVANCED SELECT
 
-1. switch case in sql
+1. switch case (if...else if...else ladder) in sql 
+https://www.w3schools.com/sql/func_mysql_case.asp 
+
+CASE
+    WHEN condition1 THEN result1
+    WHEN condition2 THEN result2
+    WHEN conditionN THEN resultN
+    ELSE result
+END;
+
 select
 case
 when (A+B)<= C then 'Not A Triangle'
@@ -85,10 +94,10 @@ end
 from triangles;
 
 https://www.hackerrank.com/challenges/what-type-of-triangle/problem
+https://www.hackerrank.com/challenges/occupations/problem
 
 
-
-9. || String Concatenation Operator - only for Oracle 
+2. || String Concatenation Operator - only for Oracle 
 select name || '(' || substr(occupation, 1, 1) || ')' 
 from occupations
 order by name;
@@ -100,7 +109,7 @@ order by count(occupation), occupation;
 
 https://www.hackerrank.com/challenges/the-pads/problem
 
-8. The HAVING clause was added to SQL because the WHERE keyword cannot be used with aggregate functions
+3. The HAVING clause was added to SQL because the WHERE keyword cannot be used with aggregate functions
 syntax:
 SELECT column_name(s)
 FROM table_name
@@ -109,7 +118,7 @@ GROUP BY column_name(s)
 HAVING condition
 ORDER BY column_name(s);
 
-9. we cannot have anyother columns in select clause other than the coulmns used in group by
+4. we cannot have anyother columns in select clause other than the coulmns used in group by
 but, you can have other aggregate functions like count, max 
 
 select comp.company_code, founder,
@@ -127,12 +136,7 @@ order by comp.company_code;
 
 https://www.hackerrank.com/challenges/the-company/problem
 
-10. self joins https://www.w3resource.com/sql/joins/perform-a-self-join.php
-SELECT a.column_name, b.column_name... 
-FROM table1 a, table1 b 
-WHERE a.common_filed = b.common_field;
-
-11. using concat function, switch case and sub-query concept
+5. using concat function, switch case and sub-query concept
 select 
 case
 when p is null then concat(n,' Root')
@@ -141,15 +145,24 @@ else concat(n, ' Leaf')
 end
 from bst
 order by n;
+https://www.hackerrank.com/challenges/binary-search-tree-1/problem 
 
-12. while using group by, same column should be projected
+6. Transposing the table - using switch case, partition by, group by
 
-13. ceil function to round off to nearest whole number
-select ceil(avg(salary) - avg(replace(salary, '0', ''))) from employees;
+multiple if...else conditions
 
-14. replace can be used with integer also in sql
-select ceil(avg(salary) - avg(replace(salary, '0', ''))) from employees;
-SELECT REPLACE(123, '1', '9');  - 923
+select 
+min(case when occupation = 'doctor'      then name else null end) ,
+min(case when occupation = 'professor'   then name else null end) ,
+min(case when occupation = 'singer'      then name else null end) ,
+min(case when occupation = 'actor'       then name else null end)
+from (select occupation, name, row_number() over (partition by occupation order by name) as id
+from occupations) as temp
+group by id
+
+https://www.hackerrank.com/challenges/occupations/problem 
+
+Extra References:
 
 Between operator
 https://www.techonthenet.com/mysql/between.php 
@@ -162,3 +175,47 @@ https://www.sqlshack.com/sql-multiple-joins-for-beginners-with-examples/
 
 Partition By
 https://www.sqlshack.com/sql-partition-by-clause-overview/
+
+---------------------------------------------------------------------------------------------------
+
+AGGREGATION
+
+1. ceil function to round up to nearest whole number
+select ceil(avg(salary) - avg(replace(salary, '0', ''))) from employees;
+
+to round down to nearest whole number - floor()
+select floor(avg(population)) from city;
+
+https://www.hackerrank.com/challenges/average-population-of-each-continent/problem 
+https://www.hackerrank.com/challenges/average-population/problem
+
+2. replace can be used with integer also in sql
+select ceil(avg(salary) - avg(replace(salary, '0', ''))) from employees;
+SELECT REPLACE(123, '1', '9');  - 923
+
+https://www.hackerrank.com/challenges/the-blunder/problem
+
+3. truncate function - TRUNCATE(number, decimals)
+
+select trunc(sum(lat_n),4)
+from station
+where lat_n between 38.7880 and 137.2345;
+
+
+select trunc(max(lat_n),4)
+from station
+where lat_n < 137.2345;
+
+https://www.hackerrank.com/challenges/weather-observation-station-13/problem
+
+Note: whenever problem asks for max/min - go with sorting or max()/min() functions
+whenever problem statement has "each" keyword then group by can be used
+
+4. power() function to square the numbers and sqrt() to square root
+https://www.w3schools.com/sql/func_mysql_power.asp 
+
+
+10. self joins https://www.w3resource.com/sql/joins/perform-a-self-join.php
+SELECT a.column_name, b.column_name... 
+FROM table1 a, table1 b 
+WHERE a.common_filed = b.common_field;
