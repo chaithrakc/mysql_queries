@@ -30,6 +30,14 @@ https://www.hackerrank.com/challenges/the-report/problem
 group by with multiple joins
 https://www.hackerrank.com/challenges/full-score/problem
 
+correlated sub query
+https://www.hackerrank.com/challenges/harry-potter-and-wands/problem
+
+simple sub queries in having clause
+https://www.hackerrank.com/challenges/challenges/problem
+
+
+
 
 
 
