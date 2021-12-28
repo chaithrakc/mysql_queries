@@ -1,4 +1,4 @@
-# SQL QUERIES
+# MYSQL QUERIES
 
 https://ozh.github.io/ascii-tables/ for generating ascii tables
 
@@ -114,7 +114,7 @@ https://www.hackerrank.com/challenges/what-type-of-triangle/problem
 https://www.hackerrank.com/challenges/occupations/problem
 
 
-2. || String Concatenation Operator - only for Oracle 
+2. `||` String Concatenation Operator - only for Oracle 
 ```
 select name || '(' || substr(occupation, 1, 1) || ')' 
 from occupations
@@ -188,14 +188,13 @@ https://www.hackerrank.com/challenges/occupations/problem
 
 ***Extra References:***
 
-Between operator
-https://www.techonthenet.com/mysql/between.php 
+Between operator https://www.techonthenet.com/mysql/between.php
 
 Joins using ascii standard
 https://www.techonthenet.com/mysql/joins.php
 
 Multiple Inner Joins 
-https://www.sqlshack.com/sql-multiple-joins-for-beginners-with-examples/ 
+https://www.sqlshack.com/sql-multiple-joins-for-beginners-with-examples/
 
 Partition By
 https://www.sqlshack.com/sql-partition-by-clause-overview/
@@ -239,8 +238,7 @@ where lat_n < 137.2345;
 ```
 https://www.hackerrank.com/challenges/weather-observation-station-13/problem
 
-**Note: whenever problem asks for max/min - go with sorting or `max()/min()` functions
-whenever problem statement has "each" keyword then group by can be used**
+***Note:*** Whenever problem asks for max/min, go with sorting (or) `max()/min()` functions. Whenever problem statement has "each" keyword then group by can be used
 
 4. `power()` function to square the numbers and sqrt() to square root
 https://www.w3schools.com/sql/func_mysql_power.asp 
