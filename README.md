@@ -285,10 +285,20 @@ WHERE a.common_filed = b.common_field;
 ```
 
 **order of execution** <br>
-(1) From <br>
-(2) Where <br>
-(3) Group By <br>
-(4) Having <br>
-(5) Select <br>
-(6) Order By <br>
-(7) Limit <br>
+(1) from <br>
+(2) where <br>
+(3) group by <br>
+(4) having <br>
+(5) select <br>
+(6) order by <br>
+(7) limit <br>
+
+```
+syntax:
+SELECT column_name(s)
+FROM table_name
+WHERE condition
+GROUP BY column_name(s)
+HAVING condition
+ORDER BY column_name(s);
+```
