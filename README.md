@@ -272,6 +272,11 @@ and w.coins_needed = (select min(coins_needed) from Wands as w1 join Wands_Prope
 order by w.power desc, p.age desc;
 ```
 --------------
+
+### ADVANCED JOIN
+
+
+--------------
 self joins https://www.w3resource.com/sql/joins/perform-a-self-join.php
 ```
 SELECT a.column_name, b.column_name... 
