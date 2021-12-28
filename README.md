@@ -283,3 +283,12 @@ SELECT a.column_name, b.column_name...
 FROM table1 a, table1 b 
 WHERE a.common_filed = b.common_field;
 ```
+
+order of execution
+(1) From <br>
+(2) Where <br>
+(3) Group By <br>
+(4) Having <br>
+(5) Select <br>
+(6) Order By <br>
+(7) Limit <br>
