@@ -1,59 +1,60 @@
 /*
+Problem Descriton:
 
-https://leetcode.com/problems/nth-highest-salary/ 
+    https://leetcode.com/problems/nth-highest-salary/ 
 
-Table: Employee
+    Table: Employee
 
-+-------------+------+
-| Column Name | Type |
-+-------------+------+
-| id          | int  |
-| salary      | int  |
-+-------------+------+
-id is the primary key column for this table.
-Each row of this table contains information about the salary of an employee.
- 
+    +-------------+------+
+    | Column Name | Type |
+    +-------------+------+
+    | id          | int  |
+    | salary      | int  |
+    +-------------+------+
+    id is the primary key column for this table.
+    Each row of this table contains information about the salary of an employee.
+    
 
-Write an SQL query to report the nth highest salary from the Employee table. If there is no nth highest salary, the query should report null.
+    Write an SQL query to report the nth highest salary from the Employee table. If there is no nth highest salary, the query should report null.
 
-The query result format is in the following example.
+    The query result format is in the following example.
 
- 
+    
 
-Example 1:
+    Example 1:
 
-Input: 
-Employee table:
-+----+--------+
-| id | salary |
-+----+--------+
-| 1  | 100    |
-| 2  | 200    |
-| 3  | 300    |
-+----+--------+
-n = 2
-Output: 
-+------------------------+
-| getNthHighestSalary(2) |
-+------------------------+
-| 200                    |
-+------------------------+
-Example 2:
+    Input: 
+    Employee table:
+    +----+--------+
+    | id | salary |
+    +----+--------+
+    | 1  | 100    |
+    | 2  | 200    |
+    | 3  | 300    |
+    +----+--------+
+    n = 2
+    Output: 
+    +------------------------+
+    | getNthHighestSalary(2) |
+    +------------------------+
+    | 200                    |
+    +------------------------+
+    Example 2:
 
-Input: 
-Employee table:
-+----+--------+
-| id | salary |
-+----+--------+
-| 1  | 100    |
-+----+--------+
-n = 2
-Output: 
-+------------------------+
-| getNthHighestSalary(2) |
-+------------------------+
-| null                   |
-+------------------------+
+    Input: 
+    Employee table:
+    +----+--------+
+    | id | salary |
+    +----+--------+
+    | 1  | 100    |
+    +----+--------+
+    n = 2
+    Output: 
+    +------------------------+
+    | getNthHighestSalary(2) |
+    +------------------------+
+    | null                   |
+    +------------------------+
 
 */
 
@@ -66,3 +67,4 @@ BEGIN
       where rownum=n -- given in the problem; nth highest salary
   );
 END
+

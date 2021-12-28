@@ -1,57 +1,60 @@
 /*
-https://leetcode.com/problems/second-highest-salary/
+Problem Description:
 
-Table: Employee
+    https://leetcode.com/problems/second-highest-salary/
 
-+-------------+------+
-| Column Name | Type |
-+-------------+------+
-| id          | int  |
-| salary      | int  |
-+-------------+------+
-id is the primary key column for this table.
-Each row of this table contains information about the salary of an employee.
- 
+    Table: Employee
 
-Write an SQL query to report the second highest salary from the Employee table. If there is no second highest salary, the query should report null.
+    +-------------+------+
+    | Column Name | Type |
+    +-------------+------+
+    | id          | int  |
+    | salary      | int  |
+    +-------------+------+
+    id is the primary key column for this table.
+    Each row of this table contains information about the salary of an employee.
+    
 
-The query result format is in the following example.
+    Write an SQL query to report the second highest salary from the Employee table. If there is no second highest salary, the query should report null.
 
-Example 1:
+    The query result format is in the following example.
 
-Input: 
-Employee table:
-+----+--------+
-| id | salary |
-+----+--------+
-| 1  | 100    |
-| 2  | 200    |
-| 3  | 300    |
-+----+--------+
-Output: 
-+---------------------+
-| SecondHighestSalary |
-+---------------------+
-| 200                 |
-+---------------------+
-Example 2:
+    Example 1:
 
-Input: 
-Employee table:
-+----+--------+
-| id | salary |
-+----+--------+
-| 1  | 100    |
-+----+--------+
-Output: 
-+---------------------+
-| SecondHighestSalary |
-+---------------------+
-| null                |
-+---------------------+
+    Input: 
+    Employee table:
+    +----+--------+
+    | id | salary |
+    +----+--------+
+    | 1  | 100    |
+    | 2  | 200    |
+    | 3  | 300    |
+    +----+--------+
+    Output: 
+    +---------------------+
+    | SecondHighestSalary |
+    +---------------------+
+    | 200                 |
+    +---------------------+
+    Example 2:
+
+    Input: 
+    Employee table:
+    +----+--------+
+    | id | salary |
+    +----+--------+
+    | 1  | 100    |
+    +----+--------+
+    Output: 
+    +---------------------+
+    | SecondHighestSalary |
+    +---------------------+
+    | null                |
+    +---------------------+
 
 */
 
+-- Query 1: with sorting and selecting top two rows
 select min(salary) as SecondHighestSalary
 from employee
 order by salary desc
@@ -62,7 +65,7 @@ input: {"headers":{"Employee":["id","salary"]},"rows":{"Employee":[[1,100],[2,20
 output: {"headers": ["SecondHighestSalary"], "values": [[100]]}
 expected: {"headers": ["SecondHighestSalary"], "values": [[200]]}
 
--- above query results in 100 because, as per the order of execution:
+Above query results in 100 because, as per the order of execution select executes first before sorting the data using order by and limit
 (1) from
 (2) where
 (3) group by
@@ -71,9 +74,9 @@ expected: {"headers": ["SecondHighestSalary"], "values": [[200]]}
 (6) order by
 (7) limit
 */
+---------------------------------------------------------------------------------------------------
 
--- row_number() will not satisfy below use case
-
+-- Query 2: row_number() will not satisfy the use case when all the employees have same salary
 select min(salary) as SecondHighestSalary
 from (select salary, row_number() over (order by salary desc) as rownum from employee) as temp
 where rownum=2; -- given in the problem; second highest salary
@@ -86,7 +89,10 @@ output {"headers": ["SecondHighestSalary"], "values": [[100]]}
 expected {"headers": ["SecondHighestSalary"], "values": [[null]]}
 */
 
--- use dense_rank()
+---------------------------------------------------------------------------------------------------
+
+-- Query 3: Final Solution using dense_rank() which works even if all the employees have same salary
+
 select min(salary) as SecondHighestSalary
 from (select salary, dense_rank() over (order by salary desc) as rownum from employee) as temp
 where rownum=2; -- given in the problem; second highest salary
