@@ -284,7 +284,7 @@ FROM table1 a, table1 b
 WHERE a.common_filed = b.common_field;
 ```
 
-order of execution
+**order of execution** <br>
 (1) From <br>
 (2) Where <br>
 (3) Group By <br>
