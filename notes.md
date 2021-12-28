@@ -1,4 +1,4 @@
-# Problems to Revise
+# PROBLEMS TO REVISE
 
 ### Basic Select
 
@@ -15,12 +15,11 @@ https://www.hackerrank.com/challenges/more-than-75-marks/problem
 
 -------
 
-### ADVANCED SELECT:
+### Advanced Select
 
 
 switch case https://www.hackerrank.com/challenges/what-type-of-triangle/problem
-
-https://www.hackerrank.com/challenges/binary-search-tree-1/problem 
+<br> https://www.hackerrank.com/challenges/binary-search-tree-1/problem 
 
 group by https://www.hackerrank.com/challenges/the-pads/problem
 
@@ -30,7 +29,7 @@ transposing table using rown_number(), partition by
 https://www.hackerrank.com/challenges/occupations/problem 
 
 ----------
-### AGGREGATION
+### Aggreation
 
 
 Replace and ceil function https://www.hackerrank.com/challenges/the-blunder/problem
@@ -43,7 +42,7 @@ over() to generate row numbers, switch case, and sub query https://www.hackerran
 
 -------
 
-### BASIC JOIN:
+### Basic Join
 
 
 if cond in the select clause and join tables without common field (cross join)
@@ -58,7 +57,9 @@ https://www.hackerrank.com/challenges/harry-potter-and-wands/problem
 simple sub queries in having clause
 https://www.hackerrank.com/challenges/challenges/problem
 
+--------
 
+### Advanced Join
 
 
 
