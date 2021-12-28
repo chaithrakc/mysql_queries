@@ -2,7 +2,7 @@
 
 https://ozh.github.io/ascii-tables/ for generating ascii tables
 
-### BASIC SELECT:
+### 1. BASIC SELECT
 
 1. We cannot have any other columns selected along with aggregate functions
 for example: 
@@ -88,7 +88,7 @@ https://www.hackerrank.com/challenges/weather-observation-station-5/problem
 
 ---------------------------------------------------------------------------------------------------
 
-### ADVANCED SELECT
+### 2. ADVANCED SELECT
 
 1. switch case (if...else if...else ladder) in SQL 
 https://www.w3schools.com/sql/func_mysql_case.asp 
@@ -186,7 +186,7 @@ group by id
 ```
 https://www.hackerrank.com/challenges/occupations/problem 
 
-***Extra References:
+***Extra References:***
 
 Between operator
 https://www.techonthenet.com/mysql/between.php 
@@ -199,10 +199,10 @@ https://www.sqlshack.com/sql-multiple-joins-for-beginners-with-examples/
 
 Partition By
 https://www.sqlshack.com/sql-partition-by-clause-overview/
-***
----------------------------------------------------------------------------------------------------
 
-### AGGREGATION
+-----------------
+
+### 3. AGGREGATION
 
 1. `ceil()` function to round up to nearest whole number
 ```
@@ -246,7 +246,7 @@ whenever problem statement has "each" keyword then group by can be used**
 https://www.w3schools.com/sql/func_mysql_power.asp 
 
 ---------------------------------------------------------------------------------------------
-### BASIC JOIN
+### 4. BASIC JOIN
 
 1. CROSS JOIN or INNER JOIN without common field
 ```
@@ -273,7 +273,8 @@ where p.is_evil = 0
 and w.coins_needed = (select min(coins_needed) from Wands as w1 join Wands_Property as p1 on (w1.code = p1.code) where w1.power = w.power and p1.age = p.age) 
 order by w.power desc, p.age desc;
 ```
-10. self joins https://www.w3resource.com/sql/joins/perform-a-self-join.php
+--------------
+self joins https://www.w3resource.com/sql/joins/perform-a-self-join.php
 ```
 SELECT a.column_name, b.column_name... 
 FROM table1 a, table1 b 
