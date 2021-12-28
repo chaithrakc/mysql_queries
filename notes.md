@@ -1,12 +1,16 @@
 # Problems to Revise
 
-### BASIC SELECT
+### Basic Select
 
 
 https://www.hackerrank.com/challenges/weather-observation-station-3/problem
+
 https://www.hackerrank.com/challenges/weather-observation-station-5/problem
+
 https://www.hackerrank.com/challenges/weather-observation-station-6/problem
+
 https://www.hackerrank.com/challenges/weather-observation-station-7/problem 
+
 https://www.hackerrank.com/challenges/more-than-75-marks/problem
 
 -------
@@ -15,21 +19,26 @@ https://www.hackerrank.com/challenges/more-than-75-marks/problem
 
 
 switch case https://www.hackerrank.com/challenges/what-type-of-triangle/problem
+
 https://www.hackerrank.com/challenges/binary-search-tree-1/problem 
 
 group by https://www.hackerrank.com/challenges/the-pads/problem
+
 multiple table join https://www.hackerrank.com/challenges/the-company/problem 
 
 transposing table using rown_number(), partition by 
 https://www.hackerrank.com/challenges/occupations/problem 
 
 ----------
-### AGGREGATION:
+### AGGREGATION
 
 
 Replace and ceil function https://www.hackerrank.com/challenges/the-blunder/problem
+
 Group By and count() https://www.hackerrank.com/challenges/earnings-of-employees/problem
+
 max in subquery https://www.hackerrank.com/challenges/weather-observation-station-15/problem
+
 over() to generate row numbers, switch case, and sub query https://www.hackerrank.com/challenges/weather-observation-station-20/problem
 
 -------
