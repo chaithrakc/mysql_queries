@@ -243,6 +243,13 @@ https://www.hackerrank.com/challenges/weather-observation-station-13/problem
 4. `power()` function to square the numbers and sqrt() to square root
 https://www.w3schools.com/sql/func_mysql_power.asp 
 
+5. generating row numbers using `over()` function
+```
+select lat_n, row_number() over (order by lat_n desc) as rnum2 from station;
+```
+
+https://www.hackerrank.com/challenges/weather-observation-station-20/problem
+
 ---------------------------------------------------------------------------------------------
 ### 4. BASIC JOIN
 
