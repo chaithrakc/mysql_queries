@@ -61,6 +61,7 @@ https://www.hackerrank.com/challenges/challenges/problem
 
 ### Advanced Join
 
+joining two subqueries https://www.hackerrank.com/challenges/sql-projects/problem
 
 
 

@@ -282,6 +282,13 @@ order by w.power desc, p.age desc;
 
 ### ADVANCED JOIN
 
+1. combining two sub queries in the from clause - cross join
+```
+select * from 
+(select start_date from projects where start_date not in (select end_date from projects)) as st_temp,
+(select end_date from projects where end_date not in (select start_date from projects)) as ed_temp;
+```
+https://www.hackerrank.com/challenges/sql-projects/problem
 
 --------------
 self joins https://www.w3resource.com/sql/joins/perform-a-self-join.php

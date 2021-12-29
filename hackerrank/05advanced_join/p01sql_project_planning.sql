@@ -41,8 +41,7 @@ two sub queries result in cross join : mxn rows
 2015-10-15 2015-11-18
 */
 
-select *
-from 
+select * from 
 --  Choose start dates that are not end dates of other projects
 (select start_date from projects where start_date not in (select end_date from projects)) as st_temp,
 -- Choose end dates that are not start dates of other projects
@@ -101,8 +100,7 @@ output
 2015-11-11 2
 2015-11-17 1
 */
-select start_date, count(*)
-from 
+select start_date, count(*) from 
 --  Choose start dates that are not end dates of other projects
 (select start_date from projects where start_date not in (select end_date from projects)) as st_temp,
 -- Choose end dates that are not start dates of other projects
@@ -130,8 +128,7 @@ we will choose end date that has minimum days of between start_date and end_date
 */
 
 -- choose end date that has minimum days of between start_date and end_date
-select start_date, min(end_date)
-from 
+select start_date, min(end_date) from 
 --  Choose start dates that are not end dates of other projects
 (select start_date from projects where start_date not in (select end_date from projects)) as st_temp,
 -- Choose end dates that are not start dates of other projects
@@ -162,18 +159,11 @@ number of days it took to complete the project in ascending order.
  If there is more than one project that have the same number of completion days, then order by the start date of the project.
  */
 
- select start_date, min(end_date)
-from 
+select start_date, min(end_date) from 
 (select start_date from projects where start_date not in (select end_date from projects)) as st_temp,
 (select end_date from projects where end_date not in (select start_date from projects)) as ed_temp
 where start_date < end_date
 group by start_date
 order by datediff(min(end_date), start_date), start_date;
-
-
-
-
-
-
 
 
