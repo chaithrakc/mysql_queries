@@ -65,7 +65,7 @@ input: {"headers":{"Employee":["id","salary"]},"rows":{"Employee":[[1,100],[2,20
 output: {"headers": ["SecondHighestSalary"], "values": [[100]]}
 expected: {"headers": ["SecondHighestSalary"], "values": [[200]]}
 
-Above query results in 100 because, as per the order of execution select executes first before sorting the data using order by and limit
+Above query results in '100' because, as per the order of execution select executes first before sorting the data using order by and limit
 (1) from
 (2) where
 (3) group by
