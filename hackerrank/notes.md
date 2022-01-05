@@ -38,7 +38,7 @@ Group By and count() https://www.hackerrank.com/challenges/earnings-of-employees
 
 max in subquery https://www.hackerrank.com/challenges/weather-observation-station-15/problem
 
-over() to generate row numbers, switch case, and sub query https://www.hackerrank.com/challenges/weather-observation-station-20/problem
+Finding Median using over() to generate row numbers, switch case, and sub query https://www.hackerrank.com/challenges/weather-observation-station-20/problem
 
 -------
 
