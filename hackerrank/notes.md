@@ -54,14 +54,15 @@ https://www.hackerrank.com/challenges/full-score/problem
 correlated sub query
 https://www.hackerrank.com/challenges/harry-potter-and-wands/problem
 
-simple sub queries in having clause
+sub queries in having clause
 https://www.hackerrank.com/challenges/challenges/problem
 
 --------
 
 ### Advanced Join
 
-joining two subqueries https://www.hackerrank.com/challenges/sql-projects/problem
+joining two subqueries, datediff() function
+https://www.hackerrank.com/challenges/sql-projects/problem
 
 
 

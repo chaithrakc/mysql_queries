@@ -16,7 +16,7 @@ select city, count(city) from station;
 
 https://www.hackerrank.com/challenges/weather-observation-station-3/problem
 
-3. Finding the duplicate records in the table
+3. Finding the number of duplicate records in the table
 ```
 select count(city) - count(distinct(city)) 
 from station; 
@@ -56,7 +56,7 @@ where rownum=1;
 
 7. string operation: `length(), upper(), lower(), substr(), substr() from backwards`
 ```
-SUBSTR(string, start, length) (or) SUBSTR(string FROM start FOR length)
+SUBSTR(col_name, start, length) (or) SUBSTR(col_name FROM start FOR length)
 ```
 ```
 select substr(Name from -3 for 3)  -- extracting last 3 chars
@@ -64,13 +64,20 @@ from students;
 ```
 https://www.hackerrank.com/challenges/more-than-75-marks/problem
 
+8. `in` operator
 ```
-select distinct(city) from station where upper(substr(city,1,1)) in ('A','E','I','O','U'); staring with vowel
-select distinct(city) from station where upper(substr(city,-1,1)) in ('A','E','I','O','U'); ending with vowel
+-- staring with vowel
+select distinct(city) from station where upper(substr(city,1,1)) in ('A','E','I','O','U'); 
+
+--  ending with vowel
+select distinct(city) from station where upper(substr(city,-1,1)) in ('A','E','I','O','U');
 ```
+https://www.hackerrank.com/challenges/weather-observation-station-6/problem
+https://www.hackerrank.com/challenges/weather-observation-station-7/problem 
+
 https://www.oracletutorial.com/oracle-string-functions/oracle-substr/
 
-8. order by is possible even with `substr(), length()`
+9. order by is possible even with `substr(), length()`
 ```
 select name 
 from students 
@@ -111,7 +118,11 @@ end
 from triangles;
 ```
 https://www.hackerrank.com/challenges/what-type-of-triangle/problem
+
 https://www.hackerrank.com/challenges/occupations/problem
+
+https://leetcode.com/problems/tree-node/
+https://www.hackerrank.com/challenges/binary-search-tree-1/problem 
 
 
 2. `||` String Concatenation Operator - only for Oracle 
@@ -203,12 +214,12 @@ https://www.sqlshack.com/sql-partition-by-clause-overview/
 
 ### 3. AGGREGATION
 
-1. `ceil()` function to round up to nearest whole number
+1. `ceil()` function to **round up** to nearest whole number
 ```
 select ceil(avg(salary) - avg(replace(salary, '0', ''))) from employees;
 ```
 
-to round down to nearest whole number - `floor()`
+to **round down** to nearest whole number - `floor()`
 ```
 select floor(avg(population)) from city;
 ```
@@ -247,8 +258,9 @@ https://www.w3schools.com/sql/func_mysql_power.asp
 ```
 select lat_n, row_number() over (order by lat_n desc) as rnum2 from station;
 ```
-
 https://www.hackerrank.com/challenges/weather-observation-station-20/problem
+https://leetcode.com/problems/second-highest-salary/
+https://leetcode.com/problems/nth-highest-salary/
 
 ---------------------------------------------------------------------------------------------
 ### 4. BASIC JOIN
@@ -270,7 +282,6 @@ https://www.hackerrank.com/challenges/the-report/problem
 
 3. correlated sub query
 extra reading https://learnsql.com/blog/correlated-sql-subquery-5-minutes/ 
-Example: https://www.hackerrank.com/challenges/harry-potter-and-wands/problem
 ```
 select w.id, p.age, w.coins_needed, w.power 
 from Wands as w join Wands_Property as p on w.code = p.code
@@ -278,11 +289,16 @@ where p.is_evil = 0
 and w.coins_needed = (select min(coins_needed) from Wands as w1 join Wands_Property as p1 on (w1.code = p1.code) where w1.power = w.power and p1.age = p.age) 
 order by w.power desc, p.age desc;
 ```
+https://www.hackerrank.com/challenges/harry-potter-and-wands/problem
+
+4. sub queries in having clause
+https://www.hackerrank.com/challenges/challenges/problem
+
 --------------
 
 ### ADVANCED JOIN
 
-1. combining two sub queries in the from clause - cross join
+1. combining two sub queries in the from clause without common field - cross join
 ```
 select * from 
 (select start_date from projects where start_date not in (select end_date from projects)) as st_temp,
@@ -290,13 +306,33 @@ select * from
 ```
 https://www.hackerrank.com/challenges/sql-projects/problem
 
---------------
-self joins https://www.w3resource.com/sql/joins/perform-a-self-join.php
+2. self joins 
 ```
-SELECT a.column_name, b.column_name... 
-FROM table1 a, table1 b 
-WHERE a.common_filed = b.common_field;
+select emp.name as employee
+from employee as emp inner join employee mgr on emp.managerId = mgr.id
+where emp.salary > mgr.salary;
 ```
+https://leetcode.com/problems/employees-earning-more-than-their-managers/
+
+```
+select s.name
+from students as s inner join packages p on s.id=p.id
+inner join friends as f on s.id=f.id
+inner join packages as fp on f.friend_id=fp.id
+where p.salary < fp.salary
+order by fp.salary;
+```
+https://www.hackerrank.com/challenges/placements/problem
+
+```
+select f1.x, f1.y
+from functions f1 inner join functions f2 on f1.x=f2.y and f1.y=f2.x
+group by f1.x, f1.y  -- to remove duplicates
+having f1.x < f1.y or count(f1.x)>1
+order by f1.x;
+
+```
+https://www.hackerrank.com/challenges/symmetric-pairs/problem
 
 **order of execution** <br>
 (1) from <br>

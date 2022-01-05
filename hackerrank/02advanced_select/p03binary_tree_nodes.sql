@@ -53,7 +53,7 @@ case
 when P is null then 'Root'
 when N in (select P from BST) then 'Inner'
 else 'Leaf'
-end
+end as type
 from BST
 order by N
 

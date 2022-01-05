@@ -32,16 +32,6 @@ You can write two separate queries to get the desired output. It need not be a s
 
 */
 
---oracle queries
--- from can be a table/query also
-select city, length(city) 
-from (select city from station order by length(city) asc, city asc) 
-where rownum = 1;
-
-select city, length(city) 
-from (select city from station order by length(city) desc, city asc) 
-where rownum=1;
-
 --mysql queries
 /*SELECT ...  
 FROM mytable  
@@ -76,4 +66,14 @@ output
 Amo 3
 Marine On Saint Croix 21
 */
+
+--oracle queries
+-- from can be a table/query also
+select city, length(city) 
+from (select city from station order by length(city) asc, city asc) 
+where rownum = 1;
+
+select city, length(city) 
+from (select city from station order by length(city) desc, city asc) 
+where rownum=1;
 

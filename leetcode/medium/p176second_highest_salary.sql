@@ -76,12 +76,12 @@ Above query results in '100' because, as per the order of execution select execu
 */
 ---------------------------------------------------------------------------------------------------
 
--- Query 2: row_number() will not satisfy the use case when all the employees have same salary
+-- Query 2: row_number() will not satisfy the use case when multiple employees have same salary
 select min(salary) as SecondHighestSalary
 from (select salary, row_number() over (order by salary desc) as rownum from employee) as temp
 where rownum=2; -- given in the problem; second highest salary
 
--- min() aggregate function is used to just to handle the use case: If there is no second highest salary, the query should report null
+-- min() aggregate function is used to handle the use case: If there is no second highest salary, the query should report null
 
 /*
 input {"headers":{"Employee":["id","salary"]},"rows":{"Employee":[[1,100],[2,100]]}}
@@ -91,14 +91,25 @@ expected {"headers": ["SecondHighestSalary"], "values": [[null]]}
 
 ---------------------------------------------------------------------------------------------------
 
--- Query 3: Final Solution using dense_rank() which works even if all the employees have same salary
+-- Query 3: Final Solution using dense_rank() which works even if multiple employees have same salary
 
 select min(salary) as SecondHighestSalary
 from (select salary, dense_rank() over (order by salary desc) as rownum from employee) as temp
 where rownum=2; -- given in the problem; second highest salary
 
-/* min() aggregate function is used to just to handle the use case: If there is no second highest 
-salary, the query should report null */
+/* min() aggregate function is used to handle the use case: If there is no second highest 
+salary, the query should report null 
+
+if condition within the select clause was not working in leetcode platform
+```
+select if(salary is null, null, salary) as SecondHighestSalary
+from (select salary, dense_rank() over (order by salary desc) as rownum from employee) as temp
+where rownum=2; -- given in the problem; second highest salary
+
+```
+https://www.hackerrank.com/challenges/the-report/problem 
+
+*/
 
 /* external reading about dense_rank(): 
 http://www.sql-tutorial.ru/en/book_rank_dense_rank_functions.html 

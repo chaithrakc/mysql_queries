@@ -72,9 +72,9 @@ group by id
 -- are ordered by Name, they are used to select actual values rather than NULL.
 
 
-
 --output of sub query 
-select occupation, name, row_number() over (partition by occupation order by name) as id from occupations
+select occupation, name, row_number() over (partition by occupation order by name) as id 
+from occupations
 
 /*Actor Eve 1
 Actor Jennifer 2

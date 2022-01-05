@@ -68,4 +68,4 @@ Problem Description:
 */
 
 select firstname, lastname, city,state
-from person p left join address a on p.personId=a.personId; /* left join in order to report null in case address is not foun for a person. */
+from person p left join address a on p.personId=a.personId; /* left join in order to report null in case address is not found for a person. */

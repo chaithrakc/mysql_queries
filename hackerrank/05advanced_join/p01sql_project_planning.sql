@@ -156,7 +156,8 @@ output
 step 4: sort according to criteria given in the problem
 number of days it took to complete the project in ascending order.
 
- If there is more than one project that have the same number of completion days, then order by the start date of the project.
+ If there is more than one project that have the same number of completion days, 
+ then order by the start date of the project.
  */
 
 select start_date, min(end_date) from 
