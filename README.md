@@ -197,7 +197,7 @@ group by id
 ```
 https://www.hackerrank.com/challenges/occupations/problem 
 
-***Extra References:***
+***Further Reading:***
 
 Between operator https://www.techonthenet.com/mysql/between.php
 
