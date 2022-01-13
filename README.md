@@ -342,6 +342,7 @@ where log1.num = log2.num and log2.num=log3.num;
 ```
 https://leetcode.com/problems/consecutive-numbers/
 
+https://leetcode.com/problems/rising-temperature/
 
 **order of execution** <br>
 (1) from <br>
