@@ -334,6 +334,15 @@ order by f1.x;
 ```
 https://www.hackerrank.com/challenges/symmetric-pairs/problem
 
+```
+select distinct(log1.num) as ConsecutiveNums 
+from logs as log1 inner join logs as log2 on log1.id=log2.id-1
+inner join logs as log3 on log2.id = log3.id - 1
+where log1.num = log2.num and log2.num=log3.num;
+```
+https://leetcode.com/problems/consecutive-numbers/
+
+
 **order of execution** <br>
 (1) from <br>
 (2) where <br>
