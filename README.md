@@ -364,6 +364,25 @@ https://leetcode.com/problems/rising-temperature/
 (7) limit <br>
 
 ```
+SELECT i.name AS instructor_name, COUNT(c.course_id) AS courses_taught
+FROM online_courses c INNER JOIN instructors i ON c.instructor_id = i.instructor_id
+WHERE c.topic IN ('SQL','Tableau','Machine Learning')
+GROUP BY i.name
+HAVING COUNT(c.course_id) > 2
+ORDER BY courses_taught DESC
+LIMIT 10;
+```
+Here's how the query will execute...
+1) FROM and JOIN -- first, the tables are identified
+2) WHERE -- next, rows are filtered out (using course topic)
+3) GROUP BY -- then, the data is grouped (instructor name)
+4) HAVING -- next, groups are filtered out (< 2 courses)
+5) SELECT -- next, the two columns are selected
+6) ORDER BY -- then, results are ranked (most courses first)
+7) LIMIT -- finally, results are limited (top 10 only)
+
+It explains why you can use the alias courses_taught in the ORDER BY but you can't use it in the HAVING (because it is named in the SELECT, after the HAVING has executed).
+```
 syntax:
 SELECT column_name(s)
 FROM table_name
