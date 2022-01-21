@@ -5,7 +5,7 @@ https://ozh.github.io/ascii-tables/ for generating ascii tables
 ### 1. BASIC SELECT
 
 1. We cannot have any other columns selected along with aggregate functions
-for example: 
+for example:
 ```
 select city, max(length(city)) from station;
 select city, count(city) from station;
@@ -19,9 +19,9 @@ https://www.hackerrank.com/challenges/weather-observation-station-3/problem
 3. Finding the number of duplicate records in the table
 ```
 select count(city) - count(distinct(city)) 
-from station; 
+from station;
 ```
-https://www.hackerrank.com/challenges/weather-observation-station-4/problem 
+https://www.hackerrank.com/challenges/weather-observation-station-4/problem
 
 4. To select the top row in sql oracle use rownum=1 and MySQL use limit 1
 ```
@@ -41,7 +41,7 @@ from (select city from station order by length(city) asc, city asc)
 where rownum = 1;
 ```
 ```
-select shortest_city.city, length(shortest_city.city) 
+select shortest_city.city, length(shortest_city.city)
 from (select city from station order by length(city), city) as shortest_city
 limit 1;
 ```
@@ -49,10 +49,10 @@ https://www.hackerrank.com/challenges/weather-observation-station-5/problem
 
 6. sorting multiple coulumns in opposite way
 ```
-select city, length(city) 
-from (select city from station order by length(city) desc, city asc) 
+select city, length(city)
+from (select city from station order by length(city) desc, city asc)
 where rownum=1;
- ```
+```
 
 7. string operation: `length(), upper(), lower(), substr(), substr() from backwards`
 ```
@@ -67,16 +67,17 @@ https://www.hackerrank.com/challenges/more-than-75-marks/problem
 8. `in` operator
 ```
 -- staring with vowel
-select distinct(city) from station where upper(substr(city,1,1)) in ('A','E','I','O','U'); 
+select distinct(city) from station where upper(substr(city,1,1)) in ('A','E','I','O','U');
 
 --  ending with vowel
 select distinct(city) from station where upper(substr(city,-1,1)) in ('A','E','I','O','U');
 ```
 https://www.hackerrank.com/challenges/weather-observation-station-6/problem
-https://www.hackerrank.com/challenges/weather-observation-station-7/problem 
+https://www.hackerrank.com/challenges/weather-observation-station-7/problem
 
 https://www.oracletutorial.com/oracle-string-functions/oracle-substr/
 
+comparing list to another list using `in` operator
 ```
 select dept.name as "Department", emp.name as "Employee", emp.salary as "Salary"
 from employee emp inner join department dept on emp.departmentId = dept.id
@@ -84,7 +85,6 @@ where (emp.departmentId, emp.salary) in (select departmentId, max(salary)
                                         from employee
                                         group by departmentId);
 ```
-
 https://leetcode.com/problems/department-highest-salary/
 
 9. order by is possible even with `substr(), length()`
@@ -137,7 +137,7 @@ https://www.hackerrank.com/challenges/binary-search-tree-1/problem
 
 2. `||` String Concatenation Operator - only for Oracle 
 ```
-select name || '(' || substr(occupation, 1, 1) || ')' 
+select name || '(' || substr(occupation, 1, 1) || ')'
 from occupations
 order by name;
 ```
@@ -196,7 +196,7 @@ https://www.hackerrank.com/challenges/binary-search-tree-1/problem
 multiple if...else conditions
 
 ```
-select 
+select
 min(case when occupation = 'doctor'      then name else null end) ,
 min(case when occupation = 'professor'   then name else null end) ,
 min(case when occupation = 'singer'      then name else null end) ,
@@ -214,7 +214,7 @@ Between operator https://www.techonthenet.com/mysql/between.php
 Joins using ascii standard
 https://www.techonthenet.com/mysql/joins.php
 
-Multiple Inner Joins 
+Multiple Inner Joins
 https://www.sqlshack.com/sql-multiple-joins-for-beginners-with-examples/
 
 Partition By
@@ -234,7 +234,7 @@ to **round down** to nearest whole number - `floor()`
 select floor(avg(population)) from city;
 ```
 
-https://www.hackerrank.com/challenges/average-population-of-each-continent/problem 
+https://www.hackerrank.com/challenges/average-population-of-each-continent/problem
 https://www.hackerrank.com/challenges/average-population/problem
 
 2. `replace()` can be used with integer also in sql
@@ -262,7 +262,7 @@ https://www.hackerrank.com/challenges/weather-observation-station-13/problem
 ***Note:*** Whenever problem asks for max/min, go with sorting (or) `max()/min()` functions. Whenever problem statement has "each" keyword then group by can be used
 
 4. `power()` function to square the numbers and sqrt() to square root
-https://www.w3schools.com/sql/func_mysql_power.asp 
+https://www.w3schools.com/sql/func_mysql_power.asp
 
 5. generating row numbers using `over()` function
 ```
@@ -352,6 +352,8 @@ where log1.num = log2.num and log2.num=log3.num;
 ```
 https://leetcode.com/problems/consecutive-numbers/
 
+Joining condition is different
+``` datediff(w1.recordDate,w2.recordDate) = 1```
 https://leetcode.com/problems/rising-temperature/
 
 **order of execution** <br>
