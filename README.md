@@ -206,6 +206,8 @@ from occupations) as temp
 group by id
 ```
 https://www.hackerrank.com/challenges/occupations/problem 
+https://leetcode.com/problems/reformat-department-table/
+
 
 ***Further Reading:***
 
