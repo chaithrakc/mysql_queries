@@ -5,6 +5,8 @@
 
 https://www.hackerrank.com/challenges/weather-observation-station-3/problem
 
+https://www.hackerrank.com/challenges/weather-observation-station-4/problem
+
 https://www.hackerrank.com/challenges/weather-observation-station-5/problem
 
 https://www.hackerrank.com/challenges/weather-observation-station-6/problem

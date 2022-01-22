@@ -81,18 +81,6 @@ https://www.hackerrank.com/challenges/weather-observation-station-6/problem
 
 https://www.hackerrank.com/challenges/weather-observation-station-7/problem
 
-https://www.oracletutorial.com/oracle-string-functions/oracle-substr/
-
-comparing list to another list using `in` operator
-```
-select dept.name as "Department", emp.name as "Employee", emp.salary as "Salary"
-from employee emp inner join department dept on emp.departmentId = dept.id
-where (emp.departmentId, emp.salary) in (select departmentId, max(salary)
-                                        from employee
-                                        group by departmentId);
-```
-https://leetcode.com/problems/department-highest-salary/
-
 9. order by is possible even with `substr(), length()`
 ```
 select name 
@@ -107,6 +95,7 @@ order by length(city), city
 limit 1;
 ```
 https://www.hackerrank.com/challenges/more-than-75-marks/problem
+
 https://www.hackerrank.com/challenges/weather-observation-station-5/problem
 
 ---------------------------------------------------------------------------------------------------
@@ -135,27 +124,20 @@ from triangles;
 ```
 https://www.hackerrank.com/challenges/what-type-of-triangle/problem
 
-https://www.hackerrank.com/challenges/occupations/problem
-
-https://leetcode.com/problems/tree-node/
-https://www.hackerrank.com/challenges/binary-search-tree-1/problem 
-
-
-2. `||` String Concatenation Operator - only for Oracle 
+2. `concat()` String Concatenation
 ```
-select name || '(' || substr(occupation, 1, 1) || ')'
+select concat(name,  '(' , substr(occupation, 1, 1) , ')' )
 from occupations
 order by name;
-```
-```
-select 'There are a total of ' || count(occupation) || ' ' || lower(occupation) || 's.'
+
+select concat('There are a total of ' , count(occupation) , ' ' , lower(occupation) , 's.')
 from occupations
 group by occupation
 order by count(occupation), occupation;
 ```
 https://www.hackerrank.com/challenges/the-pads/problem
 
-3. The HAVING clause was added to SQL because the WHERE keyword cannot be used with aggregate functions
+3. The `HAVING` clause was added to SQL because the `WHERE` keyword cannot be used with aggregate functions
 ```
 syntax:
 SELECT column_name(s)
@@ -166,8 +148,40 @@ HAVING condition
 ORDER BY column_name(s);
 ```
 
-4. We cannot have anyother columns in select clause other than the coulmns used in group by
-but, you can have other aggregate functions like `count(), max()`. 
+4. using `concat()` function, switch case and sub-query concept
+```
+select 
+case
+when p is null then concat(n,' Root')
+when n in (select p from bst) then concat(n,' Inner')
+else concat(n, ' Leaf')
+end
+from bst
+order by n;
+```
+https://leetcode.com/problems/tree-node/
+<br>
+https://www.hackerrank.com/challenges/binary-search-tree-1/problem 
+
+5. Transposing the table - using switch case, partition by, group by
+
+multiple if...else conditions
+
+```
+select
+min(case when occupation = 'doctor'      then name else null end) ,
+min(case when occupation = 'professor'   then name else null end) ,
+min(case when occupation = 'singer'      then name else null end) ,
+min(case when occupation = 'actor'       then name else null end)
+from (select occupation, name, row_number() over (partition by occupation order by name) as id
+from occupations) as temp
+group by id
+```
+https://www.hackerrank.com/challenges/occupations/problem <br>
+https://leetcode.com/problems/reformat-department-table/
+
+6. We cannot have any other column in select clause other than the coulmns used in group by
+but we can have other aggregate functions like `count(), max()`
 ```
 select comp.company_code, founder,
 count(distinct lm.lead_manager_code),
@@ -183,36 +197,6 @@ group by comp.company_code, founder
 order by comp.company_code;
 ```
 https://www.hackerrank.com/challenges/the-company/problem
-
-5. using `concat()` function, switch case and sub-query concept
-```
-select 
-case
-when p is null then concat(n,' Root')
-when n in (select p from bst) then concat(n,' Inner')
-else concat(n, ' Leaf')
-end
-from bst
-order by n;
-```
-https://www.hackerrank.com/challenges/binary-search-tree-1/problem 
-
-6. Transposing the table - using switch case, partition by, group by
-
-multiple if...else conditions
-
-```
-select
-min(case when occupation = 'doctor'      then name else null end) ,
-min(case when occupation = 'professor'   then name else null end) ,
-min(case when occupation = 'singer'      then name else null end) ,
-min(case when occupation = 'actor'       then name else null end)
-from (select occupation, name, row_number() over (partition by occupation order by name) as id
-from occupations) as temp
-group by id
-```
-https://www.hackerrank.com/challenges/occupations/problem 
-https://leetcode.com/problems/reformat-department-table/
 
 
 ***Further Reading:***

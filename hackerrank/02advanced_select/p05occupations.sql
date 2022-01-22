@@ -107,13 +107,12 @@ NULL Priyanka NULL NULL
 
 */
 
-
---(Oracle Specific Query)
-select doc.Name, prof.Name, sing.Name, act.Name
-from (select Name, row_number() over (partition by occupation order by Name) id from occupations where occupation='Doctor') doc
-full outer join (select Name, row_number() over (partition by occupation order by Name) id 
-from occupations where occupation='Professor') prof on prof.id=doc.id
-full outer join (select Name, row_number() over (partition by occupation order by Name) id 
-from occupations where occupation='Singer') sing on sing.id=prof.id
-full outer join (select Name, row_number() over (partition by occupation order by Name) id 
-from occupations where occupation='Actor') act on act.id=sing.id;
+-- using if condition
+select 
+min(if(occupation='Doctor',name,null)),
+min(if(occupation='Professor',name,null)),
+min(if(occupation='Singer',name,null)),
+min(if(occupation='Actor',name,null))
+from (select name, occupation, row_number() over (partition by occupation order by name) as id
+from occupations) as temp
+group by id;
