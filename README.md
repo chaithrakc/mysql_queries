@@ -4,8 +4,7 @@ https://ozh.github.io/ascii-tables/ for generating ascii tables
 
 ### 1. BASIC SELECT
 
-1. We cannot have any other columns selected along with aggregate functions
-for example:
+1. We cannot have any other columns selected along with aggregate functions. For example:
 ```
 select city, max(length(city)) from station;
 select city, count(city) from station;
@@ -32,19 +31,25 @@ LIMIT 1
 ```
 https://www.hackerrank.com/challenges/weather-observation-station-5/problem 
 
-5. Subquery in the FROM clause (when should we use subqueries in the from/where clauses?)
+5. Subquery in the FROM clause (but, when exactly should we use subqueries in the from/where clause?)
 When you use a subquery in the FROM clause, the result set returned from a subquery is 
-used as a temporary table. This table is referred to as a derived table or materialized subquery.<br> **We need to alias the temporary table in mysql but its not required in case of oracle.**
-```
-select city, length(city) 
-from (select city from station order by length(city) asc, city asc) 
-where rownum = 1;
-```
+used as a temporary table. This table is referred to as a derived table or materialized subquery.<br> **We need to alias the temporary table in MYSQL but its not required in case of ORACLE.**
+
+MYSQL query
 ```
 select shortest_city.city, length(shortest_city.city)
 from (select city from station order by length(city), city) as shortest_city
 limit 1;
 ```
+
+
+ORACLE query
+```
+select city, length(city) 
+from (select city from station order by length(city) asc, city asc) 
+where rownum = 1;
+```
+
 https://www.hackerrank.com/challenges/weather-observation-station-5/problem 
 
 6. sorting multiple coulumns in opposite way
