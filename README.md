@@ -78,6 +78,7 @@ select distinct(city) from station where upper(substr(city,1,1)) in ('A','E','I'
 select distinct(city) from station where upper(substr(city,-1,1)) in ('A','E','I','O','U');
 ```
 https://www.hackerrank.com/challenges/weather-observation-station-6/problem
+
 https://www.hackerrank.com/challenges/weather-observation-station-7/problem
 
 https://www.oracletutorial.com/oracle-string-functions/oracle-substr/
