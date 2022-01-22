@@ -1,6 +1,6 @@
 # MYSQL QUERIES
 
-https://ozh.github.io/ascii-tables/ for generating ascii tables
+https://ozh.github.io/ascii-tables/ for generating ascii tables.
 
 ### 1. BASIC SELECT
 
