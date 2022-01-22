@@ -251,7 +251,7 @@ where lat_n < 137.2345;
 ```
 https://www.hackerrank.com/challenges/weather-observation-station-13/problem
 
-***Note:*** Whenever problem asks for max/min, go with sorting (or) `max()/min()` functions. Whenever problem statement has "each" keyword then group by can be used
+**Note:** Whenever problem asks for max/min, go with sorting (or) `max()/min()` functions. Whenever problem statement has "each" keyword then group by can be used.
 
 4. `power()` function to square the numbers and sqrt() to square root
 https://www.w3schools.com/sql/func_mysql_power.asp
@@ -261,7 +261,9 @@ https://www.w3schools.com/sql/func_mysql_power.asp
 select lat_n, row_number() over (order by lat_n desc) as rnum2 from station;
 ```
 https://www.hackerrank.com/challenges/weather-observation-station-20/problem
+
 https://leetcode.com/problems/second-highest-salary/
+
 https://leetcode.com/problems/nth-highest-salary/
 
 ---------------------------------------------------------------------------------------------
@@ -275,10 +277,9 @@ https://www.hackerrank.com/challenges/the-report/problem
 
 2. if condition within the select clause
 ```
-select if(grade<8, NULL, name), grade, marks
-from students join grades
-where marks between min_mark and max_mark
-order by grade desc, name asc;
+select if(grade<8, null, name), grade, marks
+from students inner join grades on marks between min_mark and max_mark
+order by grade desc, name asc, marks asc;
 ```
 https://www.hackerrank.com/challenges/the-report/problem
 
@@ -346,9 +347,12 @@ https://leetcode.com/problems/consecutive-numbers/
 
 Joining condition is different
 ``` datediff(w1.recordDate,w2.recordDate) = 1```
+
 https://leetcode.com/problems/rising-temperature/
 
-**order of execution** <br>
+-------
+
+### order of execution
 (1) from <br>
 (2) where <br>
 (3) group by <br>
@@ -373,3 +377,41 @@ Note: "query execution order" is called logical query processing, as opposed to 
 Do not mistake logical query execution for physical query execution, they are two different things. 
 
 The easiest way to find what is executed first, just look at the **execution plan** - in Microsoft SQL Server you even have the option of looking at the data transfer between operators live.
+
+---------
+### Date Handling in MySQL
+
+SQL Server MONTH() Function
+https://www.w3schools.com/sql/func_sqlserver_month.asp
+
+```
+select month('2017/08/25') as mm;
+```
+
+SQL Server DATEDIFF() Function
+https://www.w3schools.com/sql/func_sqlserver_datediff.asp
+```
+SELECT DATEDIFF(year, '2017/08/25', '2011/08/25') AS DateDiff;
+```
+```
++--------------+-------------------------------------------------------------------+
+|  Parameter   |                            Description                            |
++--------------+-------------------------------------------------------------------+
+| interval     | Required. The part to return. Can be one of the following values: |
+|              | year, yyyy, yy = Year                                             |
+|              | quarter, qq, q = Quarter                                          |
+|              | month, mm, m = month                                              |
+|              | dayofyear = Day of the year                                       |
+|              | day, dy, y = Day                                                  |
+|              | week, ww, wk = Week                                               |
+|              | weekday, dw, w = Weekday                                          |
+|              | hour, hh = hour                                                   |
+|              | minute, mi, n = Minute                                            |
+|              | second, ss, s = Second                                            |
+|              | millisecond, ms = Millisecond                                     |
+| date1, date2 | Required. The two dates to calculate the difference between       |
++--------------+-------------------------------------------------------------------+
+```
+
+
+
