@@ -31,7 +31,8 @@ LIMIT 1
 ```
 https://www.hackerrank.com/challenges/weather-observation-station-5/problem 
 
-5. Subquery in the FROM clause (but, when exactly should we use subqueries in the from/where clause?)
+5. Subquery in the FROM clause. 
+
 When you use a subquery in the FROM clause, the result set returned from a subquery is 
 used as a temporary table. This table is referred to as a derived table or materialized subquery.<br> **We need to alias the temporary table in MYSQL but its not required in case of ORACLE.**
 
