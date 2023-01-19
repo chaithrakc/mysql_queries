@@ -184,18 +184,15 @@ https://leetcode.com/problems/reformat-department-table/
 6. We cannot have any other column in select clause other than the coulmns used in group by
 but we can have other aggregate functions like `count(), max()`
 ```
-select comp.company_code, founder,
-count(distinct lm.lead_manager_code),
-count(distinct sm.senior_manager_code),
-count(distinct mn.manager_code),
-count(distinct employee_code)
-from company as comp
-inner join lead_manager as lm on lm.company_code=comp.company_code
-inner join senior_manager as sm on sm.lead_manager_code = lm.lead_manager_code
-inner join manager as mn on mn.senior_manager_code = sm.senior_manager_code
-inner join employee as emp on emp.manager_code = mn.manager_code
-group by comp.company_code, founder
-order by comp.company_code;
+select c.company_code, c.founder,
+count(distinct e.lead_manager_code) as total_lead_managers,
+count(distinct e.senior_manager_code) as total_senior_managers,
+count(distinct e.manager_code) as total_managers,
+count(distinct e.employee_code) as total_employees
+from company as c 
+inner join employee as e on c.company_code = e.company_code
+group by c.company_code, c.founder
+order by c.company_code asc;
 ```
 https://www.hackerrank.com/challenges/the-company/problem
 
