@@ -116,3 +116,16 @@ min(if(occupation='Actor',name,null))
 from (select name, occupation, row_number() over (partition by occupation order by name) as id
 from occupations) as temp
 group by id;
+
+-- using pivot function of MS SQL Server
+
+-- step1: setup the pivot source
+with pivot_source as (
+    select name, occupation, row_number() over (partition by occupation order by name) as rn
+     from occupations
+)
+
+-- step2: pivot the table
+select Doctor, Professor, Singer, Actor from pivot_source pivot(
+    max(name) for occupation in (Doctor, Professor, Singer, Actor)
+) as pivot_table

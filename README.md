@@ -178,6 +178,18 @@ from (select occupation, name, row_number() over (partition by occupation order 
 from occupations) as temp
 group by id
 ```
+
+```
+-- using pivot function of MS SQL server
+with pivot_source as (
+    select name, occupation, row_number() over (partition by occupation order by name) as rn
+     from occupations
+)
+
+select Doctor, Professor, Singer, Actor from pivot_source pivot(
+    max(name) for occupation in (Doctor, Professor, Singer, Actor)
+) as pivot_table
+```
 https://www.hackerrank.com/challenges/occupations/problem <br>
 https://leetcode.com/problems/reformat-department-table/
 
