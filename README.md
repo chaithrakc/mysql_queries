@@ -12,6 +12,7 @@ select city, count(city) from station;
 
 2. Modulus operator in SQL<br>
 `mod(id,2)` - select even number of ids.
+`id % 2 = 0` in MS SQL Server
 
 https://www.hackerrank.com/challenges/weather-observation-station-3/problem
 

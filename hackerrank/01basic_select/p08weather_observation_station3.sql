@@ -22,3 +22,8 @@ where LAT_N is the northern latitude and LONG_W is the western longitude.
 select distinct(city) 
 from station 
 where mod(id,2)=0;  -- modulus operator in oracle
+
+-- MS SQL Server 
+SELECT DISTINCT(city)
+FROM station
+WHERE id % 2 = 0;

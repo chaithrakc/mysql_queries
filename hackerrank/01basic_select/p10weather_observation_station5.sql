@@ -77,3 +77,12 @@ select city, length(city)
 from (select city from station order by length(city) desc, city asc) 
 where rownum=1;
 
+-- MS SQL Server queries
+SELECT top 1 city, len(city)
+FROM station
+ORDER BY len(city), city;
+
+SELECT top 1 city, len(city)
+FROM station
+ORDER BY len(city) desc, city desc;
+
