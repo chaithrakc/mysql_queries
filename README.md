@@ -100,6 +100,11 @@ https://www.hackerrank.com/challenges/more-than-75-marks/problem
 
 https://www.hackerrank.com/challenges/weather-observation-station-5/problem
 
+10. The `DISTINCT` keyword is applied to both the "city" and "state" columns. This means that the query will return a list of distinct city-state pairs from the "station" table.
+
+```
+SELECT DISTINCT city, state FROM station
+```
 ---------------------------------------------------------------------------------------------------
 
 ### 2. ADVANCED SELECT
