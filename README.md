@@ -155,6 +155,28 @@ HAVING condition
 ORDER BY column_name(s);
 ```
 
+Find the average GPA for each major, but only include majors with an average GPA greater than 3.0.
+
+Sample Table:
+Table: students
+```
++-------------------+-------------------+--------------------+-------------------+--------------+---------------------+
+| student_firstname |  student_lastname |  student_year_name |  student_major_id |  student_gpa |    student_notes    |
++-------------------+-------------------+--------------------+-------------------+--------------+---------------------+
+| 'Robin'           | 'Banks'           | 'Freshman'         | 3                 |        4.000 | ''                  |
++-------------------+-------------------+--------------------+-------------------+--------------+---------------------+
+```
+
+```
+select  major_name, avg(student_gpa) as avg_gpa_by_major,
+        count(*) as count_of_students_by_majpr
+from students left join majors on student_major_id = major_id
+group by major_name
+having avg(student_gpa) > 3;
+```
+
+`having` can be applied to aggregate functions like `avg(), count(), max(), min()` similar to `where` clause.
+
 4. using `concat()` function, switch case and sub-query concept
 ```
 select 
