@@ -105,6 +105,16 @@ https://www.hackerrank.com/challenges/weather-observation-station-5/problem
 ```
 SELECT DISTINCT city, state FROM station
 ```
+
+11. Where clause with a query inside it
+
+Example: list of student names, gpa where the student gpa is bigger than the average overall gpa
+
+```
+select student_firstname, student_lastname, student_gpa
+from students
+where student_gpa > (select avg(student_gpa) from students);
+```
 ---------------------------------------------------------------------------------------------------
 
 ### 2. ADVANCED SELECT
