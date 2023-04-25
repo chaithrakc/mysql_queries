@@ -131,7 +131,7 @@ from triangles;
 ```
 https://www.hackerrank.com/challenges/what-type-of-triangle/problem
 
-2. `concat()` String Concatenation
+2. `concat()` String Concatenation: https://www.w3schools.com/sql/func_sqlserver_concat.asp
 ```
 select concat(name,  '(' , substr(occupation, 1, 1) , ')' )
 from occupations
