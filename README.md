@@ -170,7 +170,22 @@ https://leetcode.com/problems/tree-node/
 <br>
 https://www.hackerrank.com/challenges/binary-search-tree-1/problem 
 
-5. Transposing the table - using switch case, partition by, group by
+5. We cannot have any other column in select clause other than the coulmns used in group by
+but we can have other aggregate functions like `count(), max()`
+```
+select c.company_code, c.founder,
+count(distinct e.lead_manager_code) as total_lead_managers,
+count(distinct e.senior_manager_code) as total_senior_managers,
+count(distinct e.manager_code) as total_managers,
+count(distinct e.employee_code) as total_employees
+from company as c 
+inner join employee as e on c.company_code = e.company_code
+group by c.company_code, c.founder
+order by c.company_code asc;
+```
+https://www.hackerrank.com/challenges/the-company/problem
+
+6. Transposing the table - using switch case, partition by, group by
 
 multiple if...else conditions
 
@@ -198,21 +213,6 @@ select Doctor, Professor, Singer, Actor from pivot_source pivot(
 ```
 https://www.hackerrank.com/challenges/occupations/problem <br>
 https://leetcode.com/problems/reformat-department-table/
-
-6. We cannot have any other column in select clause other than the coulmns used in group by
-but we can have other aggregate functions like `count(), max()`
-```
-select c.company_code, c.founder,
-count(distinct e.lead_manager_code) as total_lead_managers,
-count(distinct e.senior_manager_code) as total_senior_managers,
-count(distinct e.manager_code) as total_managers,
-count(distinct e.employee_code) as total_employees
-from company as c 
-inner join employee as e on c.company_code = e.company_code
-group by c.company_code, c.founder
-order by c.company_code asc;
-```
-https://www.hackerrank.com/challenges/the-company/problem
 
 
 ***Further Reading:***
