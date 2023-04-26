@@ -108,12 +108,32 @@ SELECT DISTINCT city, state FROM station
 
 11. Where clause with a query inside it
 
-Example: list of student names, gpa where the student gpa is bigger than the average overall gpa
+Example: List of student names, gpa where the student gpa is bigger than the average overall gpa
 
 ```
 select student_firstname, student_lastname, student_gpa
 from students
 where student_gpa > (select avg(student_gpa) from students);
+```
+we do not see the overall average to understand the results.
+
+We can get overall gpa as one of the columns but the query is messy.
+```
+select student_firstname, student_lastname, student_gpa, 
+(select avg(student_gpa) from students) as overall_avg_gpa
+from students
+where student_gpa > (select avg(student_gpa) from students);
+```
+
+We can use a CTE to get the overall average gpa and use it in the where clause.
+```
+with avg_gpa as(
+    select avg(student_gpa) as overall_avg from students
+)
+select student_firstname, student_lastname, student_gpa, 
+(select * from avg_gpa)
+from students
+where student_gpa < (select * from avg_gpa);
 ```
 ---------------------------------------------------------------------------------------------------
 
