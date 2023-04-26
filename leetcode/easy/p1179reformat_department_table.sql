@@ -134,6 +134,21 @@ group by id
 order by id;
 
 -- using pivot table (ms sql)
+/*
+syntax:
+SELECT <non-pivoted column>,
+    [first pivoted column] AS <column name>,
+    [second pivoted column] AS <column name>,
+    ...
+FROM
+    (<source table>)
+PIVOT
+(
+    <aggregation function>(<value column>)
+    FOR <pivoted column>
+    IN ([first pivoted column], [second pivoted column], ...)
+) AS <alias for the pivot table>
+*/
 with pivot_source as (select id, revenue, "month" from department)
 select id, 
 "Jan" as "Jan_Revenue", 
@@ -167,8 +182,9 @@ select id,
 "Nov" as "Nov_Revenue", 
 "Dec" as "Dec_Revenue" 
 from department PIVOT(
-    sum(revenue) for "month" in ("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")) as pivot_table
+    sum(revenue) for "month" in (Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec)) as pivot_table -- do not use quotes for column names
 order by id
+
 
 /*
 OUTPUT:

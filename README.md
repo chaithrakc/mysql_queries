@@ -271,6 +271,23 @@ select Doctor, Professor, Singer, Actor from pivot_source pivot(
     max(name) for occupation in (Doctor, Professor, Singer, Actor)
 ) as pivot_table
 ```
+
+**PIVOT Syntax:**
+```
+SELECT <non-pivoted column>,
+    [first pivoted column] AS <column name>,
+    [second pivoted column] AS <column name>,
+    ...
+FROM
+    (<source table>)
+PIVOT
+(
+    <aggregation function>(<value column>)
+    FOR <pivoted column>
+    IN ([first pivoted column], [second pivoted column], ...)
+) AS <alias for the pivot table>
+```
+
 https://www.hackerrank.com/challenges/occupations/problem <br>
 https://leetcode.com/problems/reformat-department-table/
 
