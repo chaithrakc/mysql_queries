@@ -68,3 +68,12 @@ BEGIN
   );
 END
 
+-- using common table expression
+CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
+BEGIN
+  RETURN (
+      with salary_rankings as (select salary , dense_rank() over (order by salary desc) as ranking from employee)
+      select min(salary) from salary_rankings where ranking=N
+      
+  );
+END

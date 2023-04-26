@@ -114,3 +114,7 @@ https://www.hackerrank.com/challenges/the-report/problem
 /* external reading about dense_rank(): 
 http://www.sql-tutorial.ru/en/book_rank_dense_rank_functions.html 
 */
+
+-- using common table expression
+with salary_rankings as (select salary , dense_rank() over (order by salary desc) as ranking from employee)
+select min(salary) as SecondHighestSalary from salary_rankings where ranking=2;
