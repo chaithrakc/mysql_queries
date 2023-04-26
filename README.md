@@ -291,6 +291,24 @@ PIVOT
 https://www.hackerrank.com/challenges/occupations/problem <br>
 https://leetcode.com/problems/reformat-department-table/
 
+7. Correlated Subquery
+
+Correlated subqueries are used when you need to use a value from the outer query in the subquery's WHERE clause. This means that the subquery is correlated with the outer query, and is executed once per row of the outer query.
+
+Example: Find the names and salaries of all employees whose salary is greater than the average salary of their department.
+
+```
+SELECT name, salary
+FROM employees e
+WHERE salary > (
+  SELECT AVG(salary)
+  FROM employees
+  WHERE department = e.department
+);
+```
+
+The subquery calculates the average salary for each department, and the outer query selects employees whose salary is greater than their department's average salary.
+
 
 ***Further Reading:***
 
