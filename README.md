@@ -18,7 +18,7 @@ https://www.hackerrank.com/challenges/weather-observation-station-3/problem
 
 3. Finding the number of duplicate records in the table
 ```
-select count(city) - count(distinct(city)) 
+select count(city) - count(distinct city) 
 from station;
 ```
 https://www.hackerrank.com/challenges/weather-observation-station-4/problem
