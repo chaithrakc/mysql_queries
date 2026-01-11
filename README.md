@@ -112,16 +112,18 @@ https://www.hackerrank.com/challenges/weather-observation-station-5/problem
 SELECT DISTINCT city, state FROM station
 ```
 
-11. Where clause with a query inside it
+11. Common Table Expression (CTE)
 
-Example: List of student names, gpa where the student gpa is bigger than the average overall gpa
+- Above-average students (subquery in WHERE)
+
+Write a query that returns `student_firstname, student_lastname, student_gpa` for students whose GPA is greater than the overall average GPA.
 
 ```
 select student_firstname, student_lastname, student_gpa
 from students
 where student_gpa > (select avg(student_gpa) from students);
 ```
-we do not see the overall average to understand the results.
+- we do not see the overall average to understand the results. Show the benchmark (overall average as a column)
 
 We can get overall gpa as one of the columns but the query is messy.
 ```
@@ -130,8 +132,7 @@ select student_firstname, student_lastname, student_gpa,
 from students
 where student_gpa > (select avg(student_gpa) from students);
 ```
-
-We can use a CTE to get the overall average gpa and use it in the where clause.
+- Refactor for readability (CTE): Rewrite (2) using a CTE so the average GPA is computed once and reused. We can use a CTE to get the overall average gpa and use it in the where clause.
 ```
 with avg_gpa as(
     select avg(student_gpa) as overall_avg from students
@@ -142,9 +143,22 @@ from students
 where student_gpa < (select * from avg_gpa);
 ```
 
-12. Commom Table Expressions (CTE)
-Use a CTE when:
+**Use a CTE when:**
+
 - You need readability for multi-step logic: Good when you’d otherwise nest 2–4 subqueries.
+
+Question: 
+
+You are given an orders table with `order_id, customer_id, and created_at`.
+
+Write a query to:
+
+a) consider only orders placed on or after January 1, 2025
+
+b) count how many orders each customer has placed in that period
+
+c) return only customers who have placed at least 5 orders
+
 ```
 WITH filtered AS (
   SELECT *
@@ -162,6 +176,15 @@ WHERE n >= 5;
 ```
 
 - You reuse the same derived result multiple times: Helps you avoid repeating the same subquery (and mistakes).
+
+Question:
+
+a) You are given an `events` table with `user_id` and `created_at`.
+
+b) Write a query to find all users who generated more than one event on the same calendar day.
+
+c) Avoid repeating the same date-extraction logic multiple times in the query.
+
 ```
 WITH base AS (
   SELECT user_id, DATE(created_at) AS d
@@ -172,7 +195,17 @@ FROM base a
 JOIN base b
   ON a.user_id = b.user_id AND a.d = b.d;
 ```
+
 - You’re doing window functions + filtering on them: Because you can’t normally filter on window function aliases in the same SELECT.
+
+Question:
+
+a) You are given an events table with user_id and created_at.
+
+b) Write a query to return the most recent event for each user.
+
+c) Since window functions cannot be filtered directly in the same SELECT clause, structure your query in a way that allows filtering on the ranking result.
+
 ```
 WITH ranked AS (
   SELECT *,
@@ -183,15 +216,15 @@ SELECT *
 FROM ranked
 WHERE rn = 1;
 ```
-- You want a “debuggable” query: In interviews, CTEs let you explain each step and reason about correctness.
+- You want a "debuggable" query: In interviews, CTEs let you explain each step and reason about correctness.
 
 Interview rule of thumb
 
 > Use a CTE when your logic has named steps (filter → transform → rank → aggregate).
 
-> Skip the CTE when it’s a single-step query and adding a CTE doesn’t reduce complexity.
+> Skip the CTE when it's a single-step query and adding a CTE doesn’t reduce complexity.
 
-> What to say out loud (impresses)? “I use CTEs to make multi-step logic readable and maintainable, especially with window functions or repeated subqueries.
+> What to say out loud (impresses)? "I use CTEs to make multi-step logic readable and maintainable, especially with window functions or repeated subqueries."
 
 ---------------------------------------------------------------------------------------------------
 
