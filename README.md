@@ -71,13 +71,16 @@ from students;
 ```
 https://www.hackerrank.com/challenges/more-than-75-marks/problem
 
-8. `in` operator
+8. `in` operator and `regexp` operator
 ```
 -- staring with vowel
 select distinct(city) from station where upper(substr(city,1,1)) in ('A','E','I','O','U');
 
 --  ending with vowel
 select distinct(city) from station where upper(substr(city,-1,1)) in ('A','E','I','O','U');
+
+-- using regex
+SELECT DISTINCT CITY FROM STATION WHERE UPPER(CITY) REGEXP "^[AEIOU].*$"
 ```
 https://www.hackerrank.com/challenges/weather-observation-station-6/problem
 
@@ -135,6 +138,58 @@ select student_firstname, student_lastname, student_gpa,
 from students
 where student_gpa < (select * from avg_gpa);
 ```
+
+12. Commom Table Expressions (CTE)
+Use a CTE when:
+- You need readability for multi-step logic: Good when you’d otherwise nest 2–4 subqueries.
+```
+WITH filtered AS (
+  SELECT *
+  FROM orders
+  WHERE created_at >= '2025-01-01'
+),
+agg AS (
+  SELECT customer_id, COUNT(*) AS n
+  FROM filtered
+  GROUP BY customer_id
+)
+SELECT *
+FROM agg
+WHERE n >= 5;
+```
+
+- You reuse the same derived result multiple times: Helps you avoid repeating the same subquery (and mistakes).
+```
+WITH base AS (
+  SELECT user_id, DATE(created_at) AS d
+  FROM events
+)
+SELECT a.user_id
+FROM base a
+JOIN base b
+  ON a.user_id = b.user_id AND a.d = b.d;
+```
+- You’re doing window functions + filtering on them: Because you can’t normally filter on window function aliases in the same SELECT.
+```
+WITH ranked AS (
+  SELECT *,
+         ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC) AS rn
+  FROM events
+)
+SELECT *
+FROM ranked
+WHERE rn = 1;
+```
+- You want a “debuggable” query: In interviews, CTEs let you explain each step and reason about correctness.
+
+Interview rule of thumb
+
+> Use a CTE when your logic has named steps (filter → transform → rank → aggregate).
+
+> Skip the CTE when it’s a single-step query and adding a CTE doesn’t reduce complexity.
+
+> What to say out loud (impresses)? “I use CTEs to make multi-step logic readable and maintainable, especially with window functions or repeated subqueries.
+
 ---------------------------------------------------------------------------------------------------
 
 ### 2. ADVANCED SELECT
