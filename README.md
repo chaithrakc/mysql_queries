@@ -81,6 +81,9 @@ select distinct(city) from station where upper(substr(city,-1,1)) in ('A','E','I
 
 -- using regex
 SELECT DISTINCT CITY FROM STATION WHERE UPPER(CITY) REGEXP "^[AEIOU].*$"
+
+-- using regex
+SELECT DISTINCT CITY FROM STATION WHERE UPPER(CITY) REGEXP "^.+[AEIOU]$";
 ```
 https://www.hackerrank.com/challenges/weather-observation-station-6/problem
 
